@@ -1,7 +1,7 @@
 import unittest
 import numpy.matlib as np
-import plan.gp.gp
-import plan.gp.kernels
+import gpy.core
+import gpy.kernels
 
 
 def almostEqual(A, B, eps=0.01):
@@ -10,8 +10,8 @@ def almostEqual(A, B, eps=0.01):
 class GPBasicsTest(unittest.TestCase):
     def setUp(self):
         hyp = {'mean': 0, 'cov': [-1.5, -1.3, 5], 'lik': -1}
-        k = plan.gp.kernels.SE(hyp)
-        self.gp = plan.gp.gp.GP(k)
+        k = gpy.kernels.SE(hyp)
+        self.gp = gpy.core.GP(k)
 
     def test_len(self):
         self.assertEqual(len(self.gp), 0)
@@ -33,8 +33,8 @@ class GPBasicsTest(unittest.TestCase):
 class GPInfTest(unittest.TestCase):
     def setUp(self):
         hyp = {'mean': 1, 'cov': [-1.5, -1.3, 1], 'lik': -1}
-        k = plan.gp.kernels.SE(hyp)
-        self.gp = plan.gp.gp.GP(k)
+        k = gpy.kernels.SE(hyp)
+        self.gp = gpy.core.GP(k)
         x = np.mat([[0, 0], [0, 0.5], [1, 0]])
         y = np.mat([2, 1, 3]).T
         self.gp.add(x, y)

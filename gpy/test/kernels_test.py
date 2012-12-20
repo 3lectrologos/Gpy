@@ -1,7 +1,7 @@
 import unittest
 import numpy.matlib as np
 import numpy.testing
-import plan.gp.kernels
+import gpy.kernels
 
 
 def almostEqual(A, B, eps=0.01):
@@ -10,7 +10,7 @@ def almostEqual(A, B, eps=0.01):
 class SETest(unittest.TestCase):
     def setUp(self):
         self.hyp = {'mean': 0, 'cov': [-1.5, -1.3, 5], 'lik': -1}
-        self.k = plan.gp.kernels.SE(self.hyp)
+        self.k = gpy.kernels.SE(self.hyp)
         self.x = np.mat([[0, 0], [0, 0.5], [1, 0]])
         self.z = np.mat([[0.5, 0.5], [0.25, 0.5]])
     
