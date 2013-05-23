@@ -87,3 +87,8 @@ class GPInfTest(unittest.TestCase):
         mi = self.gp.minfo(self.z)
         mitrue = 3.8574835
         self.assertTrue(almostEqual(mitrue, mi, 0.00001))
+
+    def test_sample(self):
+        m = self.gp.inf(self.z, meanonly=True)
+        y = self.gp.sample(self.z)
+        self.assertEqual(m.shape, y.shape)
